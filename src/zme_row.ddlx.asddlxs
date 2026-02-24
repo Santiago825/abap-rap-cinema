@@ -1,0 +1,30 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{ 
+        typeName: 'Fila',
+        typeNamePlural: 'Filas',
+        title:{type: #STANDARD, value: 'RowLetter'}
+    }
+
+}
+annotate entity ZC_CINEMAROW
+    with 
+{
+
+    @UI.facet: [{ id: 'filadata', type: #IDENTIFICATION_REFERENCE , label: 'Datos generales' ,position: 10 },
+                { id: 'fila', type: #LINEITEM_REFERENCE , label: 'Sillas disponibles' ,position: 20, targetElement: '_Seats' }]
+    
+    @UI:{ lineItem: [{ position: 10,label: 'Id fila' }] ,identification: [{ position: 10 , label: 'Id fila' }],selectionField: [{ position: 10 }]}
+
+    RowUuid;
+    @UI:{ lineItem: [{ position: 20 ,label: 'Id sala'}] ,identification: [{ position: 20 , label: 'Id sala' }],selectionField: [{ position: 20 }]}
+
+    ParentUuid;
+    @UI:{ lineItem: [{ position: 30 ,label: 'Letra de fila' }] ,identification: [{ position: 30 , label: 'Letra de fila' }],selectionField: [{ position: 30 }]}
+
+    RowLetter;
+    @UI:{ lineItem: [{ position: 40, label: 'Id cine' }] ,identification: [{ position: 40 , label: 'Id cine' }],selectionField: [{ position: 40 }]}
+    Cinema_uuid;
+
+    
+}

@@ -1,0 +1,99 @@
+managed implementation in class zbp_i_cinema unique;
+strict ( 2 );
+
+define behavior for ZI_CINEMA //alias <alias_name>
+persistent table zcinema_h
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  association _Halls { create; }
+  field ( numbering : managed,readonly: create ) CinemaUuid;
+
+
+  mapping for zcinema_h
+  {
+    CinemaUuid = cinema_uuid;
+    Name = name;
+    City = city;
+    CrearedBy = creared_by;
+    CreatedAt = created_at;
+
+  }
+
+}
+
+define behavior for ZI_CINEMAHALL //alias <alias_name>
+persistent table zcinema_hall
+lock dependent by _Cinema
+authorization dependent by _Cinema
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( numbering : managed,readonly: create ) HallUuid;
+  field (readonly) ParentUuid;
+
+  association _Cinema;
+  association _Row { create; }
+
+  mapping for zcinema_hall
+  {
+    HallUuid = hall_uuid;
+    HallType = hall_type;
+    HallNumber = hall_number;
+    ParentUuid = parent_uuid;
+
+
+  }
+}
+
+define behavior for ZI_CINEMAROW //alias <alias_name>
+persistent table zcinema_row
+lock dependent by _Cinema
+authorization dependent by _Cinema
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) RowUuid , ParentUuid ,Cinema_uuid;
+  field ( numbering : managed ) RowUuid;
+
+  association _Cinema;
+  association _Hall;
+  association _Seats { create; }
+  mapping for zcinema_row
+  {
+    Cinema_uuid = cinema_uuid;
+    ParentUuid = parent_uuid;
+    RowLetter = row_letter;
+    RowUuid = row_uuid;
+  }
+}
+
+define behavior for ZI_CINEMASEAT //alias <alias_name>
+persistent table zcinema_seat
+lock dependent by _Cinema
+authorization dependent by _Cinema
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) SeatUuid ,ParentUuid ,Cinema_uuid;
+  field ( numbering : managed ) SeatUuid;
+  association _Cinema;
+  association _Row;
+
+  mapping for zcinema_seat
+  {
+    Cinema_uuid = cinema_uuid;
+    ParentUuid = parent_uuid;
+    IsVip = is_vip;
+    SeatNumber = seat_number;
+    SeatUuid = seat_uuid;
+  }
+
+}

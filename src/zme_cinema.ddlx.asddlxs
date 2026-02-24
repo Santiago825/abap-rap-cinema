@@ -1,0 +1,29 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{ 
+        typeName: 'Cine',
+        typeNamePlural: 'Cines',
+        title:{type: #STANDARD, value: 'Name'}
+    }
+
+}
+annotate entity ZC_CINEMA
+    with 
+{
+
+    @UI.facet: [{ id: 'cinedata', type: #IDENTIFICATION_REFERENCE , label: 'Datos generales' ,position: 10 },
+                { id: 'salas', type: #LINEITEM_REFERENCE , label: 'Salas disponibles' ,position: 20, targetElement: '_halls' }]
+    
+    @UI:{ lineItem: [{ position: 10 }] ,identification: [{ position: 10 , label: 'Id' }],selectionField: [{ position: 10 }]}
+    CinemaUuid;
+    @UI:{ lineItem: [{ position: 20 }] ,identification: [{ position: 20, label: 'Nombre' }],selectionField: [{ position: 20 }]}
+    Name;
+    @UI:{ lineItem: [{ position: 30 }] ,identification: [{ position: 30 , label: 'Ciudad' }],selectionField: [{ position: 30 }]}
+    City;
+    @UI:{ lineItem: [{ position: 40 }] ,identification: [{ position: 40, label: 'Creado por' }],selectionField: [{ position: 40 }]}  
+    CrearedBy;
+    @UI:{ lineItem: [{ position: 50 }] ,identification: [{ position: 50 ,label: 'Creado en' }],selectionField: [{ position: 50 }]}    
+    CreatedAt;
+
+    
+}

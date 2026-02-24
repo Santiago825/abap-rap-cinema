@@ -1,0 +1,26 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{ 
+        typeName: 'Sala',
+        typeNamePlural: 'Salas',
+        title:{type: #STANDARD, value: 'HallType'}
+    }
+
+}
+annotate entity ZC_CINEMAHALL
+    with 
+{
+        @UI.facet: [{ id: 'saladata', type: #IDENTIFICATION_REFERENCE , label: 'Datos generales' ,position: 10 },
+                { id: 'fila', type: #LINEITEM_REFERENCE , label: 'Filas disponibles' ,position: 20, targetElement: '_Row' }]
+    
+    
+    @UI:{ lineItem: [{ position: 10,label: 'Id sala' }] ,identification: [{ position: 10 , label: 'Id sala' }],selectionField: [{ position: 10 }]}
+    HallUuid;
+    @UI:{ lineItem: [{ position: 20 ,label: 'Id cine' }] ,identification: [{ position: 10 , label: 'Id cine' }],selectionField: [{ position: 20 }]}
+    ParentUuid;
+    @UI:{ lineItem: [{ position: 30, label: 'Numero de sala' }] ,identification: [{ position: 10 , label: 'Numero de sala' }],selectionField: [{ position: 30 }]}
+    HallNumber;
+    @UI:{ lineItem: [{ position: 40, label: 'Tipo de sala' }] ,identification: [{ position: 10 , label: 'Tipo de sala' }],selectionField: [{ position: 40 }]}
+    HallType;
+    
+}

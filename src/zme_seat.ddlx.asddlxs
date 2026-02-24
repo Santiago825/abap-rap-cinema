@@ -1,0 +1,30 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{ 
+        typeName: 'Fila',
+        typeNamePlural: 'Filas',
+        title:{type: #STANDARD, value: 'SeatNumber'}
+    }
+
+}
+annotate entity ZC_CINEMASEAT
+    with 
+{
+
+    @UI.facet: [{ id: 'seatdata', type: #IDENTIFICATION_REFERENCE , label: 'Datos generales' ,position: 10 }]
+    
+    @UI:{ lineItem: [{ position: 10,label: 'Id silla' }] ,identification: [{ position: 10 , label: 'Id silla' }],selectionField: [{ position: 10 }]}
+   SeatUuid;
+   @UI:{ lineItem: [{ position: 20,label: 'Id fila' }] ,identification: [{ position: 20 , label: 'Id fila' }],selectionField: [{ position: 20 }]}
+   
+   ParentUuid;
+    @UI:{ lineItem: [{ position: 30,label: 'Numero de silla' }] ,identification: [{ position: 30 , label: 'Numero de silla' }],selectionField: [{ position: 30 }]}
+   SeatNumber;
+    @UI:{ lineItem: [{ position: 40,label: 'Es vip' }] ,identification: [{ position: 40 , label: 'Es vip' }],selectionField: [{ position: 40 }]}
+
+   IsVip;
+    @UI:{ lineItem: [{ position: 50,label: 'Id cine' }] ,identification: [{ position: 50 , label: 'Id cine' }],selectionField: [{ position: 50 }]}
+
+   Cinema_uuid;
+    
+}

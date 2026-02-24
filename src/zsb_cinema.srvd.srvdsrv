@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service definition - servicio cinema'
+define service ZSB_CINEMA {
+  expose ZC_CINEMA     as Cinema;
+  expose ZC_CINEMAHALL as HALL;
+  expose ZC_CINEMAROW  as ROW;
+  expose ZC_CINEMASEAT as SEAT;
+}

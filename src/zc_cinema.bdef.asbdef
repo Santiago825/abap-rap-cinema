@@ -1,0 +1,39 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_CINEMA //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _halls { create; }
+}
+
+define behavior for ZC_CINEMAHALL //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Cinema;
+  use association _Row { create; }
+}
+
+define behavior for ZC_CINEMAROW //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Cinema;
+  use association _Hall;
+  use association _Seats { create; }
+}
+
+define behavior for ZC_CINEMASEAT //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Cinema;
+  use association _Row;
+}
